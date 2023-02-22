@@ -1,0 +1,51 @@
+{
+  "api": {
+    "myGPTapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "myGPTfunc"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "myGPTfunc": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_myGPTfunc_apiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myGPTfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_myGPTfunc_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myGPTfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_myGPTfunc_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myGPTfunc"
+        }
+      ]
+    }
+  }
+}

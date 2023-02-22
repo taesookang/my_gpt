@@ -1,18 +1,18 @@
-import { IChatLine } from '../interfaces';
-import ChatLine from './ChatLine';
+import { IChatContent } from '../interfaces';
+import ChatContent from './ChatContent';
 
 interface Props {
-  lines: IChatLine[];
+  chatContents: IChatContent[];
 }
 
-export const ChatContainer: React.FC<Props> = ({ lines }) => {
+export const ChatContainer: React.FC<Props> = ({ chatContents }) => {
   return (
     <div
       id="chat-container"
       className="flex flex-1 w-full overflow-y-scroll flex-col pb-5"
     >
-      {lines.map((line) => (
-        <ChatLine line={line} key={crypto.randomUUID()} />
+      {chatContents.map((content) => (
+        <ChatContent key={content.id} id={content.id} prompt={content.prompt} />
       ))}
       <div id="chat-line-end" />
     </div>

@@ -3,10 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>My GPT</title>
   </head>
   <body class="bg-dark-200">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- add these lines for amplify to be working -->
+    <script>
+      window.global = window;
+      window.process = {
+        env: { DEBUG: undefined },
+      };
+      var exports = {};
+    </script>
+    <!-- add these lines for amplify to be working -->
   </body>
 </html>

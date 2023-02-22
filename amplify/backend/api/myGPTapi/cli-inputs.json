@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/gpt": {
+      "name": "/gpt",
+      "lambdaFunction": "myGPTfunc",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

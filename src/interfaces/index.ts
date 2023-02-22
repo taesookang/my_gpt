@@ -1,4 +1,9 @@
 export interface IChatLine {
   type: 'user' | 'bot';
-  message: string | null | undefined;
+  message: string | undefined;
+}
+
+export interface IChatContent {
+  id: string;
+  prompt: string;
 }

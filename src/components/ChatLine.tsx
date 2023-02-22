@@ -1,12 +1,7 @@
 import { IChatLine } from '../interfaces';
 import Loader from './Loader';
 
-interface Props {
-  line: IChatLine;
-}
-
-export const ChatLine: React.FC<Props> = ({ line }) => {
-  const { type, message } = line;
+export const ChatLine: React.FC<IChatLine> = ({ type, message }) => {
   return (
     <div
       id="chat-line"
@@ -24,10 +19,10 @@ export const ChatLine: React.FC<Props> = ({ line }) => {
           alt={type === 'bot' ? 'bot' : 'user'}
         />
       </div>
-      {message ? (
-        <p className="text-white whitespace-pre-line">{message}</p>
-      ) : (
+      {type === 'bot' && !message ? (
         <Loader />
+      ) : (
+        <p className="text-white whitespace-pre-line">{message}</p>
       )}
     </div>
   );

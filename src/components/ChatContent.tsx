@@ -8,9 +8,11 @@ import ChatLine from './ChatLine';
 
 export const ChatContent: React.FC<IChatContent> = ({ prompt }) => {
   const [response, setResponse] = useState<string>('');
-  const { setIsAnswering } = useGlobalContext();
-  const contentRef = useRef<HTMLDivElement | null>(null);
   const [isError, setIsError] = useState(false);
+
+  const { setIsAnswering } = useGlobalContext();
+
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const typeText = (text: string) => {
     let index = -1;

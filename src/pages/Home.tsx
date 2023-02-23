@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
-import Main from '../components/Main';
 import { IChatContent } from '../interfaces';
+import Main from '../components/Main';
 import PromptForm from '../components/PromptForm';
 
 const ChatContainer = lazy(() => import('../components/ChatContainer'));

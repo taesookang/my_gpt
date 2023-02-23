@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IChatContent } from '../interfaces';
+import { useLoading } from '../context';
 
 interface Props {
   prompt: string;
@@ -13,6 +14,7 @@ export const PromptForm: React.FC<Props> = ({
   setChatContents,
 }) => {
   const [height, setHeight] = useState('auto');
+  const { isLoading } = useLoading();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(event.target.value);
@@ -32,11 +34,11 @@ export const PromptForm: React.FC<Props> = ({
     setChatContents((prev) => [...prev, content]);
     setPrompt('');
 
-    const container = document.getElementById('chat-container');
+    // const container = document.getElementById('chat-container');
 
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
+    // if (container) {
+    //   container.scrollTop = container.scrollHeight;
+    // }
   };
   return (
     <form
@@ -58,10 +60,11 @@ export const PromptForm: React.FC<Props> = ({
           cols={1}
           onChange={handleChange}
           value={prompt}
-          placeholder="Ask codex..."
+          disabled={isLoading}
+          placeholder={isLoading ? 'Codex is answering...' : 'Ask codex...'}
           className="w-full focus:outline-none bg-transparent resize-none text-white tracking-wide py-2 overflow-y-hidden text-xl sm:text-base"
         />
-        <button type="submit">
+        <button type="submit" disabled={isLoading}>
           <img src="assets/enter.svg" alt="send" />
         </button>
       </div>

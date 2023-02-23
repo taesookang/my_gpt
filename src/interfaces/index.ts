@@ -1,6 +1,6 @@
 export interface IChatLine {
   type: 'user' | 'bot';
-  message: string | undefined;
+  message: string;
 }
 
 export interface IChatContent {

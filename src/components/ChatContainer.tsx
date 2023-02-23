@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { IChatContent } from '../interfaces';
 import ChatContent from './ChatContent';
 
@@ -8,12 +8,7 @@ interface Props {
 
 export const ChatContainer: React.FC<Props> = ({ chatContents }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  }, [chatContents]);
+  const endLineRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -24,7 +19,7 @@ export const ChatContainer: React.FC<Props> = ({ chatContents }) => {
       {chatContents.map((content) => (
         <ChatContent key={content.id} id={content.id} prompt={content.prompt} />
       ))}
-      <div id="chat-line-end" />
+      <div id="chat-line-end" ref={endLineRef} />
     </div>
   );
 };

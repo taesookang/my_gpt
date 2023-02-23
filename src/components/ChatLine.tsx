@@ -1,7 +1,11 @@
 import { IChatLine } from '../interfaces';
 import Loader from './Loader';
 
-export const ChatLine: React.FC<IChatLine> = ({ type, message }) => {
+export const ChatLine: React.FC<IChatLine> = ({
+  type,
+  message,
+  isError = false,
+}) => {
   return (
     <div
       id="chat-line"
@@ -22,7 +26,13 @@ export const ChatLine: React.FC<IChatLine> = ({ type, message }) => {
       {type === 'bot' && !message ? (
         <Loader />
       ) : (
-        <p className="text-white whitespace-pre-line">{message}</p>
+        <p
+          className={`${
+            isError ? 'text-red-500' : 'text-white'
+          } whitespace-pre-line`}
+        >
+          {message}
+        </p>
       )}
     </div>
   );

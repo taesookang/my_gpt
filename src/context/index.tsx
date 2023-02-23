@@ -1,25 +1,25 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useState } from 'react';
 
-interface ILoadingContext {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+interface IGlobalContext {
+  isAnswering: boolean;
+  setIsAnswering: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Props {
   children: React.ReactNode;
 }
 
-const LoadingContext = createContext<ILoadingContext>({} as ILoadingContext);
+const GlobalContext = createContext<IGlobalContext>({} as IGlobalContext);
 
-export const LoadingContextProvider: React.FC<Props> = ({ children }) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+export const GlobalContextProvider: React.FC<Props> = ({ children }) => {
+  const [isAnswering, setIsAnswering] = useState<boolean>(false);
 
   return (
-    <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
+    <GlobalContext.Provider value={{ isAnswering, setIsAnswering }}>
       {children}
-    </LoadingContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
-export const useLoading = () => useContext(LoadingContext);
+export const useGlobalContext = () => useContext(GlobalContext);

@@ -30,8 +30,10 @@ module.exports = {
     ],
     'import/no-named-as-default': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'no-plusplus': 0,
+    '@typescript-eslint/no-var-requires': 0,
     'react-hooks/exhaustive-deps': 0,
   },
 };

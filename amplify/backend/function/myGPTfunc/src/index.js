@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const awsServerlessExpress = require('aws-serverless-express');
 const app = require('./app');
 

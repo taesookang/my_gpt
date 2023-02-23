@@ -1,75 +1,74 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { API } from 'aws-amplify';
 import { IChatContent } from '../interfaces';
-import { useLoading } from '../context';
+import { useGlobalContext } from '../context';
 import ChatLine from './ChatLine';
 
 export const ChatContent: React.FC<IChatContent> = ({ prompt }) => {
-  const [data, setData] = useState<string | undefined>(undefined);
   const [response, setResponse] = useState<string>('');
-  const { setIsLoading } = useLoading();
+  const { setIsAnswering } = useGlobalContext();
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    setData(
-      'Lorem ipsum dolor,\n sit amet consectetur adipisicing elit.\n Quibusdam dicta \nperspiciatis repud\niandae animi \nnumquam vel necessitatib\nus dolore, enim nihil \nuod veritatis quas explic\nabo sapien\nte. Autem sin\nt a natus eaque doloremque!'
-    );
-  }, []);
-
-  // useEffect(() => {
-  //   // fetch data when a ChatContent component is created.
-  //   const fetchData = () => {
-  //     setIsLoading(true);
-  //     API.post('myGPTapi', '/gpt', {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: {
-  //         prompt,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         const parsedData = res.bot.trim(); // trims any trailing spaces/'\n'
-  //         setData(parsedData);
-  //       })
-  //       .catch((err) => {
-  //         console.error(err);
-  //         setData('Something went wrong :(');
-  //       });
-  //   };
-  //   fetchData();
-  // }, []);
-
-  useEffect(() => {
-    // Text typing effect
+  const typeText = (text: string) => {
     let index = -1;
     let interval: NodeJS.Timeout | null = null;
 
-    if (data) {
-      interval = setInterval(() => {
-        if (index < data.length) {
-          setResponse((prev) => prev + data.charAt(index));
-          index++;
-          if (index === data.length) {
-            setIsLoading(false);
-          }
-        } else {
-          clearInterval(interval!);
+    interval = setInterval(() => {
+      if (index < text.length) {
+        setResponse((prev) => prev + text.charAt(index));
+        index++;
+        if (index === text.length) {
+          setIsAnswering(false);
         }
-      }, 40);
-    }
-
-    return () => {
-      if (interval) {
-        clearInterval(interval);
+      } else {
+        clearInterval(interval!);
       }
+    }, 40);
+  };
+
+  useEffect(() => {
+    // fetch data when a ChatContent component is created.
+    const fetchData = () => {
+      API.post('myGPTapi', '/gpt', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          prompt,
+        },
+      })
+        .then((res) => {
+          const parsedData = res.bot.trim(); // trims any trailing spaces/'\n'
+          typeText(parsedData);
+        })
+        .catch((err) => {
+          console.error(err);
+          setIsError(true);
+          typeText('Something went wrong :( Try again later.');
+        });
     };
-  }, [data]);
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Chat container scrolls to the end of line, whenever the height of content box changes.
+    const container = document.getElementById('chat-container');
+    const endLine = document.getElementById('chat-line-end');
+    if (container && endLine) {
+      container.scrollTo({
+        top: endLine.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  }, [contentRef.current?.getBoundingClientRect().height]);
 
   return (
-    <div id="chat-content" className="">
+    <div id="chat-content" ref={contentRef}>
       <ChatLine type="user" message={prompt} />
-      <ChatLine type="bot" message={response} />
+      <ChatLine type="bot" message={response} isError={isError} />
     </div>
   );
 };

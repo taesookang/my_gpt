@@ -3,13 +3,13 @@ import { Amplify } from 'aws-amplify';
 
 import awsConfig from './aws-exports';
 import { WrappedApp } from './App';
-import { LoadingContextProvider } from './context';
+import { GlobalContextProvider } from './context';
 import './index.css';
 
 Amplify.configure(awsConfig);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <LoadingContextProvider>
+  <GlobalContextProvider>
     <WrappedApp />
-  </LoadingContextProvider>
+  </GlobalContextProvider>
 );

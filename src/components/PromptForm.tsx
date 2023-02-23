@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IChatContent } from '../interfaces';
-import { useLoading } from '../context';
+import { useGlobalContext } from '../context';
 
 interface Props {
   prompt: string;
@@ -14,7 +14,7 @@ export const PromptForm: React.FC<Props> = ({
   setChatContents,
 }) => {
   const [height, setHeight] = useState('auto');
-  const { isLoading } = useLoading();
+  const { isAnswering, setIsAnswering } = useGlobalContext();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(event.target.value);
@@ -28,17 +28,13 @@ export const PromptForm: React.FC<Props> = ({
   };
   const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault();
+    setIsAnswering(true);
     const timestamp = Date.now();
     const id = `${timestamp}-${Math.random()}`;
     const content: IChatContent = { id, prompt };
     setChatContents((prev) => [...prev, content]);
+    setHeight('auto');
     setPrompt('');
-
-    // const container = document.getElementById('chat-container');
-
-    // if (container) {
-    //   container.scrollTop = container.scrollHeight;
-    // }
   };
   return (
     <form
@@ -60,11 +56,11 @@ export const PromptForm: React.FC<Props> = ({
           cols={1}
           onChange={handleChange}
           value={prompt}
-          disabled={isLoading}
-          placeholder={isLoading ? 'Codex is answering...' : 'Ask codex...'}
+          disabled={isAnswering}
+          placeholder={isAnswering ? 'Codex is answering...' : 'Ask codex...'}
           className="w-full focus:outline-none bg-transparent resize-none text-white tracking-wide py-2 overflow-y-hidden text-xl sm:text-base"
         />
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isAnswering}>
           <img src="assets/enter.svg" alt="send" />
         </button>
       </div>

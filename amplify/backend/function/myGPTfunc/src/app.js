@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 // open ai initiation
 const configuration = new Configuration({
-  apiKey: process.env.API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 

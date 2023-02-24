@@ -2,8 +2,8 @@
   "lambdaLayers": [],
   "environmentVariableList": [
     {
-      "cloudFormationParameterName": "apiKey",
-      "environmentVariableName": "API_KEY"
+      "cloudFormationParameterName": "openaiApiKey",
+      "environmentVariableName": "OPENAI_API_KEY"
     }
   ]
 }

@@ -30,7 +30,7 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_myGPTfunc_apiKey": {
+    "AMPLIFY_function_myGPTfunc_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
@@ -38,7 +38,7 @@
         }
       ]
     },
-    "AMPLIFY_function_myGPTfunc_deploymentBucketName": {
+    "AMPLIFY_function_myGPTfunc_openaiApiKey": {
       "usedBy": [
         {
           "category": "function",

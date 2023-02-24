@@ -16,21 +16,21 @@ export const ChatContent: React.FC<IChatContent> = ({ prompt }) => {
 
   const typeText = (text: string) => {
     let index = -1;
-    let interval: NodeJS.Timeout | null = null;
 
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       if (index < text.length) {
-        setResponse((prev) => prev + text.charAt(index));
         index++;
+        setResponse((prev) => {
+          return prev + text.charAt(index);
+        });
         if (index === text.length) {
           setIsAnswering(false);
         }
       } else {
-        clearInterval(interval!);
+        clearInterval(interval);
       }
     }, 40);
   };
-
   useEffect(() => {
     // fetch data when a ChatContent component is created.
     const fetchData = () => {

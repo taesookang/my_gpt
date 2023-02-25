@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.7.2\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.7.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -50,12 +50,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "myGPTfunc",
+            "mygpt",
             {
               "Fn::Join": [
                 "",
                 [
-                  "myGPTfunc",
+                  "mygpt",
                   "-",
                   {
                     "Ref": "env"
@@ -95,12 +95,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "mygptLambdaRolec70c7fa7",
+            "mygptLambdaRoleec473ec1",
             {
               "Fn::Join": [
                 "",
                 [
-                  "mygptLambdaRolec70c7fa7",
+                  "mygptLambdaRoleec473ec1",
                   "-",
                   {
                     "Ref": "env"

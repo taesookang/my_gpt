@@ -34,7 +34,7 @@ export const ChatContent: React.FC<IChatContent> = ({ prompt }) => {
   useEffect(() => {
     // fetch data when a ChatContent component is created.
     const fetchData = () => {
-      API.post('myGPTapi', '/gpt', {
+      API.post('mygpt', '/gpt', {
         headers: {
           'Content-Type': 'application/json',
         },

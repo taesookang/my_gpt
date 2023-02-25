@@ -1,6 +1,6 @@
 {
   "api": {
-    "myGPTapi": {
+    "mygpt": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "myGPTfunc"
+          "resourceName": "mygpt"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -16,35 +16,35 @@
     }
   },
   "function": {
-    "myGPTfunc": {
+    "mygpt": {
       "build": true,
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
-  "hosting": {},
   "parameters": {
-    "AMPLIFY_function_myGPTfunc_deploymentBucketName": {
+    "AMPLIFY_function_mygpt_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "myGPTfunc"
+          "resourceName": "mygpt"
         }
       ]
     },
-    "AMPLIFY_function_myGPTfunc_openaiApiKey": {
+    "AMPLIFY_function_mygpt_openaiApiKey": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "myGPTfunc"
+          "resourceName": "mygpt"
         }
       ]
     },
-    "AMPLIFY_function_myGPTfunc_s3Key": {
+    "AMPLIFY_function_mygpt_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "myGPTfunc"
+          "resourceName": "mygpt"
         }
       ]
     }

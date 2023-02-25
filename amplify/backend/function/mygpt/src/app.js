@@ -6,6 +6,12 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	OPENAI_API_KEY
+Amplify Params - DO NOT EDIT */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');

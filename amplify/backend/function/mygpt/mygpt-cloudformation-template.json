@@ -17,7 +17,8 @@
       "Type": "String"
     },
     "openaiApiKey": {
-      "Type": "String"
+      "Type": "String",
+      "Default": ""
     }
   },
   "Conditions": {

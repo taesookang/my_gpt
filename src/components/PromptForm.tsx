@@ -61,7 +61,7 @@ export const PromptForm: React.FC<Props> = ({
           className="w-full focus:outline-none bg-transparent resize-none text-white tracking-wide py-2 overflow-y-hidden text-xl sm:text-base"
         />
         <button type="submit" disabled={isAnswering}>
-          <img src="assets/enter.svg" alt="send" />
+          <img src="/assets/enter.svg" alt="send" />
         </button>
       </div>
     </form>

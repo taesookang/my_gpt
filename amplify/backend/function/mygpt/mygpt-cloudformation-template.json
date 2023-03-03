@@ -17,8 +17,7 @@
       "Type": "String"
     },
     "openaiApiKey": {
-      "Type": "String",
-      "Default": "${OPENAI_API_KEY}"
+      "Type": "String"
     }
   },
   "Conditions": {

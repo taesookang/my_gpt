@@ -31,6 +31,7 @@ export const ChatContent: React.FC<IChatContent> = ({ prompt }) => {
       }
     }, 40);
   };
+
   useEffect(() => {
     // fetch data when a ChatContent component is created.
     const fetchData = () => {

@@ -19,7 +19,7 @@ jobs:
       id: check_repo
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.TOKEN }}
+        token: ${{ secrets.GPT_TOKEN }}
         repository: mygpt-dev
         event-type: check-repo
 
